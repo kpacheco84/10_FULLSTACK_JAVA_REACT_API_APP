@@ -1,53 +1,45 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
+import { Route, Switch, Redirect, BrowserRouter as Router } from "react-router-dom";
 import axios from 'axios';
-// Client components
 
+// Client components import
 
-//const axios = require('axios');
-export default class CoursesList extends React.Component {
-  state = {
-    isLoading: true,
-    courses: []
-  }
-  componentDidMount() {
-    axios.get(`http://localhost:5000/api/courses`).then(res => {
-      const courses = res.data;
-      this.setState({
-        courses
-      });
-    })
-  }
-  render() {
-      return ( <ul> {
-          this.state.courses.map(course => < li > {
-            course.title
-          } </li>)} </ul>)
-        }
-      }
-
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
+// function taken and modified from:
+// https://reacttraining.com/react-router/web/example/auth-workflow
+/*function PrivateRoute({
+	component: Component,
+	...rest
+}) {
+	return ( < Route { ...rest
+		}
+		render = {
+			props => {
+				if (localStorage.getItem('authenticated') === 'true') {
+					return <Component { ...props
+					}
+					/>
+				} else {
+					localStorage.setItem('path', props.location.pathname);
+					return <Redirect to = {
+						"/signin"
+					}
+					/>}
+			}
+		}
+		/>);
 }
 */
+class App extends Component {
+	render() {
+    return ( < Router > < Switch > 
+	  < Route path = '/' exact component = {Courses}/>
+	  < Route path = '/courses/coursedetail'exact component = {CourseDetail}/> 
+	 //< Route path = '/courses/:id'exact component = {CourseDetail}/>  
+	  </Switch> 
+      </Router>);
+		}
+	}
+	export default App;
 
-//export default App;
