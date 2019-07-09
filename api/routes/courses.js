@@ -25,6 +25,8 @@ router.get('/', (req, res, next) => {
 		next(err);
 	});
 });
+
+
 //GET Course by ID
 router.get('/:id', (req, res, next) => {
 	//grab id from request as param

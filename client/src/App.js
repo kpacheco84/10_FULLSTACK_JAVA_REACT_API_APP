@@ -35,7 +35,7 @@ class App extends Component {
 	render() {
     return ( < Router > < Switch > 
 	  < Route path = '/' exact component = {Courses}/>
-	  < Route path = '/courses/coursedetail'exact component = {CourseDetail}/> 
+	  < Route path = '/courses/:id'exact component = {CourseDetail}/> 
 	 //< Route path = '/courses/:id'exact component = {CourseDetail}/>  
 	  </Switch> 
       </Router>);
