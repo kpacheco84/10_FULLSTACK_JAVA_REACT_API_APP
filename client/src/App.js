@@ -6,37 +6,15 @@ import axios from 'axios';
 
 import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
-// function taken and modified from:
-// https://reacttraining.com/react-router/web/example/auth-workflow
-/*function PrivateRoute({
-	component: Component,
-	...rest
-}) {
-	return ( < Route { ...rest
-		}
-		render = {
-			props => {
-				if (localStorage.getItem('authenticated') === 'true') {
-					return <Component { ...props
-					}
-					/>
-				} else {
-					localStorage.setItem('path', props.location.pathname);
-					return <Redirect to = {
-						"/signin"
-					}
-					/>}
-			}
-		}
-		/>);
-}
-*/
+import UpdateCourse from './components/UpdateCourse';
+
+
 class App extends Component {
 	render() {
     return ( < Router > < Switch > 
 	  < Route path = '/' exact component = {Courses}/>
 	  < Route path = '/courses/:id'exact component = {CourseDetail}/> 
-	 //< Route path = '/courses/:id'exact component = {CourseDetail}/>  
+	  <  Route path = '/courses/:id/update'exact component = {UpdateCourse}/>  
 	  </Switch> 
       </Router>);
 		}

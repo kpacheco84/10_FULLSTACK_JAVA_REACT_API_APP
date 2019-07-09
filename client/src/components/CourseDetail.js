@@ -9,24 +9,49 @@ export default class CourseDetail extends React.Component {
 
   state = {
       isLoading: true,
-      courses: []
+      courses: [],
+      username:""
     }
     componentDidMount() {
       axios.get("http://localhost:5000/api/courses/" + this.props.match.params.id).then(res => {
         const courses = res.data;
         this.setState({
-          courses
+          courses,
+          username: courses.User.firstName + " " + courses.User.lastName
         });
       })
     }
+    handleDelete  = (e) => {
+      e.preventDefault();
+      axios.delete("http://localhost:5000/api/courses/" + this.props.match.params.id
+      //user authentication required
+      /*,{
+        auth: {
+        username: localStorage.getItem("username"),
+        password: localStorage.getItem("password")
+        }
+      }*/)
+    .then(res => {
+    this.props.history.push("/courses");
+        console.log("Course deleted.");
+        })
+      }
     render() {
 
       const course = this.state.courses;
         return(
+          
       <div id="root">
           <div>
         <Header />
       <div class="bounds">
+      <div class="grid-100">
+      <span>
+      <Link class="button" to={ "/courses/"+course.id+"/update" }>Update Course</Link>
+      <Link class="button" onClick={e => this.handleDelete(e) }>Delete Course</Link>
+      </span>
+      <Link class="button button-secondary" to={ "/" }>Return to List</Link>
+      </div>
          
       { 
         <div class="bounds course--detail">
@@ -64,4 +89,5 @@ export default class CourseDetail extends React.Component {
         
         
         
-        )}} 
+        )} 
+      };
