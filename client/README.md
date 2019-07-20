@@ -1,3 +1,7 @@
+
+Please run npm start at the api folder and at the client folder to be able to run the app in localhost:3000/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
