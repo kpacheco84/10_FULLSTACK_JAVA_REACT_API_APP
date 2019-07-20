@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
-import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Consumer } from './UserContext';
+import { NavLink, Link } from 'react-router-dom';
 
 
 const Header = () => {
+	return (
+		<Consumer>{({ user, authenticated, signOut }) =>(
+			<div className="header">
+				<div className="bounds">
+					<h1 className="header--logo">
+					  <NavLink to="/courses">Courses</NavLink>
+					</h1>
 
-
-
-    if (!(localStorage.getItem('authenticated') === 'true')) {
-    return (
-        <div>
-            <div className="header">
-                <div className="bounds">
-                    <h1 className="header--logo">Courses</h1>
-                    <nav><Link className="signup" to="/signup">Sign Up</Link><Link className="signin" to="/signin">Sign In</Link></nav>
-                    </div>
-                </div>
-            <hr />
-        </div>
-        );
-
-    } else {
-        return (
-            <div>
-            <div className="header">
-                <div className="bounds">
-                    <h1 className="header--logo">Courses</h1>
-                <nav><span>Welcome {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}!</span><Link className="signout" to="/signout">Sign Out</Link></nav>
-            </div>
-        </div>
-         <hr/>
-    </div>
-);}
+	{/*welcome greeting with user name*/}
+					{ (authenticated) ?
+							(<nav>
+								<span>Welcome {user.firstName} {user.lastName} !</span>
+								<Link className="signout" to="/signOut" onClick={signOut}>Sign Out</Link>
+							</nav>)
+							:
+							(<nav>
+								<NavLink className="signup" to="/signup">Sign Up</NavLink>
+								<NavLink className="signin" to="/signin">Sign In</NavLink>
+							</nav>)
+					}
+				</div>
+			</div>
+		)}
+		</Consumer>
+	);
 }
+
+
 
 export default Header;
 

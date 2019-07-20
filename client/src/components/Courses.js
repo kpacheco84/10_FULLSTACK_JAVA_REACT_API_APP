@@ -17,12 +17,19 @@ export default class Courses extends React.Component {
           courses
         });
       })
-    }
+//catch push error
+      .catch(err => {
+        if(err.response.status === 500) {
+          this.props.history.push("/error");
+          console.log(err.response, err);
+        }
+      });
+  }
     render() {
         return ( 
           <div id="root">
             <div>
-          <Header />
+          
         <div class="bounds">
             
         { this.state.courses.map(course => 
