@@ -23,7 +23,7 @@ class UpdateCourse extends Component {
   
       axios.get("http://localhost:5000/api/courses/" + this.props.match.params.id)
         .then(res => { 
-          const course = res.data.course; 
+          const course = res.data;
           if(course.userId === parseInt(localStorage.getItem("id"))){ 
             this.setState({ 
               id: course.id, 
@@ -120,47 +120,44 @@ class UpdateCourse extends Component {
                 ) : ''}
        
         <form onSubmit={ e => this.handleUpdateCourse(e, user, userId, emailAddress, password, title, description, materialsNeeded, estimatedTime)}>
-        <div class="grid-66">
-          <div class="course--header">
-            <h4 class="course--label">Course</h4>
-            <div><input id="title" name="title" type="text" class="input-title course--title--input" placeholder="Course title..."
+        <div className="grid-66">
+          <div className="course--header">
+            <h4 className="course--label">Course</h4>
+            <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
                   value={this.state.title} onChange={this.handleUpdateInput}/></div>
             <p>By {user.firstName} {user.lastName}</p>
           </div>
-          <div class="course--description">
-          <div><textarea id="description" name="description" class="" placeholder="Course description..." value = {this.state.description} onChange={this.handleUpdateInput} >
+          <div className="course--description">
+          <div><textarea id="description" name="description" className="" placeholder="Course description..." value = {this.state.description} onChange={this.handleUpdateInput} >
           </textarea>
           </div>
            </div>
         </div>
-        <div class="grid-25 grid-right">
-          <div class="course--stats">
-            <ul class="course--stats--list">
-              <li class="course--stats--list--item">
+        <div className="grid-25 grid-right">
+          <div className="course--stats">
+            <ul className="course--stats--list">
+              <li className="course--stats--list--item">
                 <h4>Estimated Time</h4>
-                <div><input id="estimatedTime" name="estimatedTime" type="text" class="course--time--input"
+                <div><input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input"
                       placeholder="Hours" value={this.state.estimatedTime} onChange={this.handleUpdateInput}/></div>
               </li>
-              <li class="course--stats--list--item">
+              <li className="course--stats--list--item">
                 <h4>Materials Needed</h4>
                 <ul>
-                <div><textarea id="materialsNeeded" name="materialsNeeded" class="" placeholder="List materials..." value = {this.state.materialsNeeded} onChange={this.handleUpdateInput}> 
+                <div><textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List materials..." value = {this.state.materialsNeeded} onChange={this.handleUpdateInput}> 
                 </textarea></div>
                 </ul>
               </li>
             </ul>
           </div>
         </div>
-        </form>
+     
+     <div className="grid-100 pad-bottom">
+				<button className="button" type="submit">Update Course</button>
+        <button className="button button-secondary"><Link to={"/courses/" + this.props.match.params.id}>Cancel</Link></button>
       </div>
-     }
-      
-      <div class="grid-100 pad-bottom">
-      <button class="button" type="submit">Update Course</button>
-      <Link class="button button-secondary" onclick="event.preventDefault()" to={ "/courses/"+ this.props.match.params.id }>Cancel</Link>
-      
-    
-      </div>
+</form>
+    </div>
     </div>
     )}
 		</Consumer>
