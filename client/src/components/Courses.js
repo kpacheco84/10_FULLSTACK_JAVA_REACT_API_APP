@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Route, Switch, Redirect, BrowserRouter,Link } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
-import Header from './Header'
+
 
 
 
