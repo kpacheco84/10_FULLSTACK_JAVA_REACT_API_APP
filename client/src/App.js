@@ -59,16 +59,19 @@ handleSignIn = (e, emailAddress, password, props, err) => {
 				localStorage.setItem("authenticated", true)
 		//catch error
 			}}).catch(err => {
+		
 				if(err.response.status === 400){
 					this.setState({
 						errMsg: err.response.data.message 
+						
 					})
 				} else if (err.status === 401){
 					this.setState({
+						
 						errMsg: err.response.data.message 
 					})
 				}	else {
-				
+					
 				}
 		});
 	
