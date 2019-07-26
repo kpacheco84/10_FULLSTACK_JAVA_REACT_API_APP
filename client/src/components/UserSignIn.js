@@ -21,54 +21,10 @@ class UserSignIn extends Component{
   handleSignIn = (e, signIn, emailAddress, password,err) => {
 	if(e){
 		e.preventDefault();
-	}
-// Authenticate user by request to REST API's users endpoint
-	axios.get("http://localhost:5000/api/users",
-		{
-			auth: {
-				emailAddress: emailAddress,
-				password: password
-			}
-		})
-		.then(res => {
-			if (res.status === 200) {
-				const user = res.data;
-				this.setState({
-					user: user,
-					userId: user.id,
-					authenticated: true,
-					password: user.password,
-					username: user.emailAddress,
-				});
-
-
-// keep data locally using React's localStorage browser instance
-				localStorage.setItem("id", user.id);
-				localStorage.setItem("user", user);
-				localStorage.setItem("username", emailAddress);
-				localStorage.setItem("password", password);
-				localStorage.setItem("authenticated", true)
-		//catch error
-			}}).catch(err => {
-		
-				if(err.response.status === 400){
-					this.setState({
-						errMsg: err.response.data.message 	
-					})
-				} else if (err.response.status === 401){
-					this.setState({
-						errMsg: err.response.data.message 
-					})
-				}	else {
-					signIn(e, emailAddress, password,err);
-		            this.props.history.push("/courses");
-				}
-		});
 	
-  }
-		/*signIn(e, emailAddress, password,err);
+		signIn(e, emailAddress, password,err);
 		this.props.history.push("/courses");
-		*/
+	}}
 	
 
 	render(){
