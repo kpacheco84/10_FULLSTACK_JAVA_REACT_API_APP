@@ -40,7 +40,7 @@ handleSignIn = (e, emailAddress, password, props, err) => {
 			}
 		})
 		.then(res => {
-			if (res.status === 200) {
+			if (err.status === 200) {
 				const user = res.data;
 				this.setState({
 					user: user,
@@ -60,7 +60,7 @@ handleSignIn = (e, emailAddress, password, props, err) => {
 		//catch error
 			}}).catch(err => {
 		
-				if(err.response.status === 400){
+				if(err.status === 400){
 					this.setState({
 						errMsg: err.response.data.message 
 						

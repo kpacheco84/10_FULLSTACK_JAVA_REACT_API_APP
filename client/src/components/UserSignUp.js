@@ -51,11 +51,11 @@ class UserSignUp extends Component {
 			.catch(err => {
 				if(err.response.status === 400){
 					this.setState({
-						errMsg: err.response.data.error.message
+						errMsg: err.response.data.message 
 					})
 				} else if (err.response.status === 401){
 					this.setState({
-						errMsg: err.response.data.error.message
+						errMsg: err.response.data.message 
 					})
 				}	else {
 					this.props.history.push("/error");
